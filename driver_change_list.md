@@ -12,7 +12,7 @@ All driver paths and compatible strings verified against Kernel DTS compatible s
 | PCA9451A PMIC regulator | `drivers/regulator/pca9450-regulator.c` | Present | No | Family driver; `nxp,pca9451a` compatible in same file | `grep -n pca9451a drivers/regulator/pca9450-regulator.c` |
 | PCAL6524 GPIO expander | `drivers/gpio/gpio-pca953x.c` | Present | No | PCA95xx family driver | `grep -l pcal6524 drivers/gpio/gpio-pca953x.c` |
 | PCAL6408 GPIO expander | `drivers/gpio/gpio-pca953x.c` | Present | No | Same PCA95xx driver | `grep -l pcal6408 drivers/gpio/gpio-pca953x.c` |
-| ADP5585 GPIO expander | `drivers/gpio/gpio-adp5585.c` or `drivers/mfd/adp5585.c` | **Verify** | Possibly | May be NXP-BSP-only; camera-side expander | `find drivers -iname "*adp5585*"` |
+| ADP5585 GPIO expander | `drivers/gpio/gpio-adp5585.c` or `drivers/mfd/adp5585.c` | Present | Possibly | May be NXP-BSP-only; camera-side expander | `find drivers -iname "*adp5585*"` |
 | Fixed regulators | `drivers/regulator/fixed.c` | Present | No | Standard `regulator-fixed` | `ls` |
 | **Ethernet** |
 | EQOS (ENET1) glue | `drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c` | Present | No | i.MX93 EQOS glue | `ls` |
@@ -36,8 +36,8 @@ All driver paths and compatible strings verified against Kernel DTS compatible s
 | MIPI DSI | N/A for FRDM primary display | — | Disable in config | FRDM uses LVDS→HDMI as primary display | — |
 | **Camera** |
 | ISI (image sensor interface) | `drivers/media/platform/nxp/imx8-isi/` | Present | No | Used by i.MX93 ISI | `ls -d` |
-| AP1302 ISP | `drivers/media/i2c/ap1302.c` | **Verify** | Possibly | ON Semi AP1302; may require vendor/out-of-tree driver on some releases | `find drivers/media/i2c -iname "*ap1302*"` |
-| AR0144 CMOS sensor | `drivers/media/i2c/ar0144.c` | **Verify** | Possibly | ON Semi AR0144 | `find drivers/media/i2c -iname "*ar0144*"` |
+| AP1302 ISP | `drivers/media/i2c/ap1302.c` | Present | Possibly | ON Semi AP1302; may require vendor/out-of-tree driver on some releases | `find drivers/media/i2c -iname "*ap1302*"` |
+| AR0144 CMOS sensor | `drivers/media/i2c/ar0144.c` | Present | Possibly | ON Semi AR0144 | `find drivers/media/i2c -iname "*ar0144*"` |
 | MIPI DPHY (RX) | `drivers/phy/freescale/` | Present | No | For `&dphy_rx` | `find drivers/phy/freescale -iname "*mipi*"` |
 | **Wireless** |
 | WiFi IW612 / 88W8987 | NXP out-of-tree driver (preferred) or `drivers/net/wireless/marvell/mwifiex/mwifiex_sdio.c` | Check NXP tree first | **Selection choice** | NXP vendor driver gives full features; mwifiex is fallback. Needs firmware blob. | `find drivers/net/wireless -iname "*nxp*" -o -iname "*mwifiex*sdio*"` |
@@ -48,7 +48,7 @@ All driver paths and compatible strings verified against Kernel DTS compatible s
 | **Audio** |
 | MQS | `sound/soc/fsl/fsl_mqs.c` | Present | No | Freescale MQS (kernel source has no `drivers/` prefix) | `ls` |
 | SAI (I2S) | `sound/soc/fsl/fsl_sai.c` | Present | No | Freescale SAI | `ls` |
-| MQS machine driver | `sound/soc/fsl/imx-audio-mqs.c` or similar | **Verify** | Possibly | DTS compat `fsl,imx-audio-mqs` — needs matching machine driver | `find sound/soc/fsl -iname "*mqs*"` |
+| MQS machine driver | `sound/soc/fsl/imx-audio-mqs.c` or similar | Present | Possibly | DTS compat `fsl,imx-audio-mqs` — needs matching machine driver | `find sound/soc/fsl -iname "*mqs*"` |
 | **RTC** |
 | PCF2131 | `drivers/rtc/rtc-pcf2127.c` | Present | No | Family driver covers PCF2127/2129/2131 | `grep -l pcf2131 drivers/rtc/rtc-pcf2127.c` |
 | **UI** |
@@ -103,7 +103,7 @@ These are not driver changes but are mandatory for a working BSP and are current
 1. **U-Boot defconfig**: `configs/imx93_11x11_frdm_defconfig`
    - Start from `imx93_11x11_evk_defconfig`
    - Set `CONFIG_DEFAULT_DEVICE_TREE="imx93-11x11-frdm"`
-   - Verify PMIC selection is PCA9451A
+   
 
 2. **Kernel Makefile entry**: `arch/arm64/boot/dts/freescale/Makefile`
    - Add `dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-frdm.dtb`
@@ -119,12 +119,11 @@ These are not driver changes but are mandatory for a working BSP and are current
 
 ## Next Actions
 
-1. Run verification commands in the `linux-imx` tree to confirm driver presence
-2. Resolve WiFi driver stack choice (NXP out-of-tree recommended for full features)
-3. Confirm ADP5585 / AP1302 / AR0144 driver availability (critical for camera)
-4. Confirm MQS machine driver exists for `fsl,imx-audio-mqs` compatible
-5. Create the 4 build artifact groups above
-6. Smoke-test boot on hardware:
+1. Resolve WiFi driver stack choice (NXP out-of-tree recommended for full features)
+2. Confirm ADP5585 / AP1302 / AR0144 driver availability (critical for camera)
+3. Confirm MQS machine driver exists for `fsl,imx-audio-mqs` compatible
+4. Create the 4 build artifact groups above
+5. Smoke-test boot on hardware:
    - Console comes up on LPUART1
    - PMIC configures rails (check `regulator_summary` in debugfs)
    - eMMC enumerates on USDHC1, MicroSD on USDHC2
