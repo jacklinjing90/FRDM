@@ -1,0 +1,4 @@
+interface:
+  display_name: "i.MX BSP Build Integration"
+  short_description: "Build-check U-Boot and Linux BSPs"
+  default_prompt: "Use $imx-bsp-build-integration to make the NXP i.MX U-Boot and Linux BSP build cleanly."
