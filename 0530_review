@@ -1,0 +1,188 @@
+0530 review - orig/linux_kernel/imx93-11x11-frdm.dts vs output/linux_kernel/imx93-11x11-frdm.dts
+
+整體判斷：
+
+- 這兩份不像單純「同一份 DTS 的小改版」。orig 是 Copyright 2025，內容偏向較新的 FRDM-IMX93 board DTS；output 是 Copyright 2022，保留比較多 EVK/feature branch 風格的 audio、display、sensor、M.2/expander 節點。
+- 差異要分三類看：
+  1. 硬體連線可由 FRDM schematic/PDF 證明，例如 PCF2131、PCAL6524 offset 18 對 SD3_nRST。
+  2. Linux/BSP policy，PDF 不會直接證明，例如 status = "okay"、reserved-memory 大小、assigned-clock-rates。
+  3. 可能是不同 BSP 版本或不同 carrier/display/audio use case 混在一起，需要人工決定是否要保留，例如 WM8962、ADV7535、AP1302 reset GPIO。
+
+需要優先釐清的高風險差異：
+
+1. Wi-Fi/M.2 reset GPIO
+
+- orig:
+  - usdhc3_pwrseq reset-gpios = <&pcal6524 12 GPIO_ACTIVE_LOW>
+- output:
+  - usdhc3_pwrseq reset-gpios = <&pcal6524 18 GPIO_ACTIVE_LOW>
+- 為什麼不只是「不同」：
+  - 這是實際硬體 reset 腳位，不是軟體偏好。錯了會造成 Wi-Fi/SDIO 裝置無法 reset、枚舉失敗，或 suspend/resume 不穩。
+  - evidence.yaml 目前有 E61：PCAL6524 offset 18 = P2_2，FRDM PDF p.17 顯示對到 SD3_nRST，這比較像 Wi-Fi SDIO reset 的正確證據。
+  - orig 的 offset 12 目前沒有在 evidence 裡看到同等強度的 SD3 reset 證據；它可能來自另一版 EVK/舊版 DTS，或是不同 expander pin mapping。
+- 建議：
+  - 若目標是依 FRDM schematic 修正，output 的 <&pcal6524 18 ...> 較有證據。
+  - 若要採 orig，必須補 offset 12 對應哪個 net 的 PDF/Allegro/BOM 證據，否則不能只因為 orig 較新就採用。
+
+2. AP1302 reset GPIO
+
+- orig:
+  - ap1302 reset-gpios = <&pcal6524 22 GPIO_ACTIVE_LOW>
+- output:
+  - ap1302 reset-gpios = <&adp5585 0 GPIO_ACTIVE_LOW>
+- 為什麼會不同：
+  - AP1302/ISP camera path 很可能跟不同 camera mezzanine、不同 display/camera option 或不同 BSP demo configuration 有關。output 同時有較多 display/audio/ADP5585 相關節點，看起來像保留了 optional camera/display reference design。
+  - PCAL6524 是 FRDM base board expander；ADP5585 可能是附加 ISP/display/audio path 的 expander。兩者指向不同硬體控制域。
+- 風險：
+  - 選錯 reset controller，camera sensor 或 AP1302 bridge 可能永遠保持 reset，或 reset timing 不受 Linux 控制。
+- 建議：
+  - 這項不能用 DTS 新舊直接決定。要看 AP1302 實際裝在哪個 schematic page/connector，確認 reset net 是接到 PCAL6524 P2_6/offset 22 還是 ADP5585 offset 0。
+  - 若本板沒有 AP1302/ISP daughter card，應考慮 disable 或移除整個 AP1302 path，而不是只改 reset GPIO。
+
+3. Reserved memory / Ethos-U memory
+
+- orig:
+  - CMA alloc-ranges = <0 0x80000000 0 0x30000000>
+  - ethosu_mem = 0xA8000000 / 0x08000000
+- output:
+  - CMA alloc-ranges = <0 0x80000000 0 0x40000000>
+  - ethosu_mem = 0xC0000000 / 0x10000000
+- 為什麼會不同：
+  - 這通常不是 schematic 證據能決定的，而是 BSP memory map、Linux CMA policy、Ethos-U/NPU demo workload、DDR size/configuration 決定。
+  - output 保留較大的 CMA window 和較大的 Ethos-U reserved region，看起來像舊 BSP 或 demo-oriented configuration；orig 較小且移到 0xA8000000，可能是新版 BSP 重新安排 reserved memory 避免跟 CMA/remoteproc/DDR layout 衝突。
+- 風險：
+  - reserved region 錯誤會造成 kernel memory overlap、CMA allocation 失敗、Ethos-U driver buffer 不足或 remoteproc carveout 衝突。
+- 建議：
+  - 以目前要跑的 BSP/bootloader DDR layout 為準，不應用 PDF 判斷。
+  - 若目標是跟 orig 2025 BSP 對齊，應採 orig 的 reserved-memory；若要保留 output 的 0xC0000000/0x10000000，需要確認 DDR 容量、kernel memblock log、Ethos-U driver需求。
+
+4. lcdif assigned-clock-rates
+
+- orig:
+  - first rate = 1039500000
+- output:
+  - first rate = 445333333
+- 為什麼會不同：
+  - assigned-clock-rates 是 display clock tree 設定，不是單純板級連線。不同 panel/bridge、MIPI DSI vs LVDS/HDMI path、pixel clock 需求，都可能導致不同 parent PLL rate。
+  - output 同時有 DSI graph、ADV7535、LVDS bridge disabled 等 display path；orig 則啟用 LDB/LVDS channel 和 IT6263。這表示兩份 DTS 可能不是同一個 display topology。
+- 風險：
+  - 錯誤 clock rate 會造成顯示黑屏、花屏、bridge PLL lock fail，或 DRM mode 不穩。
+- 建議：
+  - 先決定目標 display path：FRDM 預設 LVDS/IT6263，還是 output 裡的 DSI/ADV7535 path。
+  - 若採 orig display topology，lcdif clock 應跟 orig 一起採；若採 output 的 DSI/ADV7535，則要同時保留對應 graph/bridge/panel 設定並驗證 clock。
+
+5. USDHC3 100 MHz pinctrl drive setting
+
+- orig:
+  - 100 MHz: 0x158e / 0x4000138e
+- output:
+  - 100 MHz: 0x15be / 0x400013be
+- 為什麼會不同：
+  - 這是 pad control drive/slew/pull 設定，通常來自 signal integrity tuning 或 BSP errata workaround，不是 schematic 會直接寫出的東西。
+  - 兩份 200 MHz 都是 0x15fe / 0x400013fe，差異只在 100 MHz state，表示不是腳位 mux 錯，而是 pad electrical setting 調校不同。
+- 風險：
+  - 設得太弱可能 SDIO 100 MHz 不穩；設得太強可能 ringing/EMI 較高。
+- 建議：
+  - 若沒有量測資料，先跟較新的 orig 對齊比較保守。
+  - 若 output 來自已驗證 Wi-Fi module，則保留 output 但要記錄來源，不要只寫「不同」。
+
+中風險或功能取捨差異：
+
+6. Audio/MICFIL/codec nodes
+
+- output 有：
+  - aliases、dmic、sound-wm8962、bt-sco-codec、sound-bt-sco、sound-micfil
+  - WM8962 codec、MICFIL、SAI1/SAI3 pinctrl/clock
+- orig 有：
+  - sound-mqs、mqs1，並沒有 output 那套 WM8962/MICFIL/BT-SCO graph
+- 為什麼會不同：
+  - 這像是不同 audio use case：orig 偏 MQS/simple output；output 偏完整 codec + BT SCO + digital mic。
+  - output 裡 WM8962/DMIC/SAI 的存在需要硬體 BOM/schematic 支持，不能只因為節點完整就保留。
+- 風險：
+  - 若硬體沒有 WM8962 或 DMIC，Linux 可能 probe fail、音訊 card 建立失敗或出現無效 ALSA device。
+- 建議：
+  - 以實際 FRDM BOM 和 schematic 決定。沒有裝的 audio codec/DMIC 節點應 disable 或移除。
+  - 如果要保留 output 的音訊功能，0530_review 需要補 evidence：I2C address、SAI pin、power rail、HP detect GPIO。
+
+7. Display graph / bridges / backlight
+
+- output 有：
+  - backlight_lvds、DSI/dphy graph、ADV7535、LVDS bridge disabled、display/audio 相關 ADP5585 usage
+- orig 有：
+  - LDB/LVDS channel enabled、IT6263 bridge status okay
+- 為什麼會不同：
+  - 這是 display topology 不同。orig 表示走 LDB/LVDS 到 IT6263；output 同時保留 DSI/ADV7535 和 disabled LVDS bridge，比較像參考平台支援多種顯示選項。
+  - backlight_lvds 使用 ADP5585 PWM/GPIO，但 evidence 目前對 ADP5585 offset 0/9 是非 FRDM 或不足證據，不能視為已證明。
+- 風險：
+  - 同時混用不同 display path 容易造成 graph endpoint 不完整、clock 不匹配、背光 GPIO 指錯。
+- 建議：
+  - 先選一條實際硬體顯示路徑。若是 FRDM base design，應偏向 orig 的 LDB/IT6263；若使用外接 DSI/ADV7535，需補該外接板證據。
+
+8. M.2 power path
+
+- output 有：
+  - reg_m2_pwr: gpio = <&pcal6524 13 GPIO_ACTIVE_HIGH>
+  - reg_usdhc3_vmmc vin-supply = <&reg_m2_pwr>
+- orig 沒有 reg_m2_pwr，WLAN_EN 直接由 PCAL6524 offset 20 控制。
+- 為什麼會不同：
+  - output 把 M.2 slot power 和 WLAN_EN 分成兩段 supply chain；orig 把 Wi-Fi enable 當作單一 regulator。
+  - evidence 裡 E60 指 offset 13 = EXT1_PWREN，這是否就是 M.2 power path 仍需要看 connector/power page。
+- 風險：
+  - 若 power chain 寫錯，Wi-Fi 可能 enable 了但 upstream M.2 rail 沒開，或不該開的 expansion power 被打開。
+- 建議：
+  - 需要補 FRDM p.17/power page 的 net chain：P1_5/EXT1_PWREN -> 哪個 switch -> 哪個 connector/rail。
+  - 在證據完整前，這項標成「待確認」比直接採 output 更安全。
+
+9. Ethernet PHY realtek,clkout-disable
+
+- output 多：
+  - ethphy1/ethphy2: realtek,clkout-disable
+- orig 沒有。
+- 為什麼會不同：
+  - 這是 Realtek PHY driver-specific property，用來關閉 PHY clock output。它通常是 EMI/功耗/未使用 clock output 的 board tuning，不是基本 PHY 連線。
+- 風險：
+  - 一般不影響 RGMII 基本連線，但若某個下游電路依賴 PHY clkout，關掉會出問題；若未使用，關掉通常合理。
+- 建議：
+  - 檢查 schematic 是否有 PHY CLKOUT 接到其他元件。未使用時 output 的 property 可保留；不確定時應註明是 driver tuning，不是 schematic 必要項。
+
+10. rtc@53 / PCF2131
+
+- orig:
+  - pcf2131: rtc@53 在 &lpi2c3 下，有 status = "okay"
+- output:
+  - pcf2131: rtc@53 也在 &lpi2c3 下，但沒有 status = "okay"
+- 補充：
+  - 前一次網頁顯示沒有證據是 HTML parser 解析 TSV tab 縮排錯誤，已修。PCF2131 本身有 E04 證據：FRDM PDF p.22 PCF2131TF at I2C address 0x53。
+- 為什麼會不同：
+  - 有無 status = "okay" 是 Linux enablement policy。若父 I2C bus enabled 且 node 沒有 disabled，省略 status 通常仍可視為 enabled；但明寫 "okay" 會比較清楚。
+- 建議：
+  - PCF2131 應保留。若追求明確，採 orig 的 status = "okay"。
+  - 不要再標成「沒有證據」；真正沒有 schematic 直接證明的是 status policy，不是 PCF2131 device/address。
+
+orig 有、output 沒有的節點：
+
+11. sw-keys、lpspi3/spidev0、mqs1、tpm3/tpm4、LED pinctrl
+
+- 為什麼會不同：
+  - 這些是 board UX/debug/demo 功能。orig 2025 可能新增了 FRDM board 按鍵、LED、SPI demo、MQS audio path；output 可能來自舊版 DTS 或另一個 feature set，沒有帶進來。
+- 風險：
+  - 移除會少功能，但通常不會阻止核心 boot。
+  - lpspi3/spidev0 需要確認是否真的要開 spidev；upstream kernel 通常不喜歡 generic spidev-style placeholder。
+- 建議：
+  - 若目標是完整 FRDM board support，應把 orig 的 keys/LED/MQS/SPI 功能列為候選保留。
+  - 但 spidev0 要另外確認產品需求，不應無條件帶入。
+
+結論 / 建議處理順序：
+
+1. 先修正「有硬體證據的錯誤或不清楚項」：
+   - PCF2131 要標 E04，不是無證據。
+   - Wi-Fi reset 應優先採有 E61 證據的 <&pcal6524 18 ...>，除非能補 offset 12 的證據。
+2. 再決定版本基準：
+   - 若要跟新版 NXP FRDM 2025 DTS 對齊，reserved-memory、lcdif clock、USDHC3 100MHz pad setting、keys/LED/MQS 等應偏向 orig。
+   - 若 output 是要保留完整 audio/display/camera demo，必須補 WM8962/ADV7535/AP1302/ADP5585/backlight 的外部板或 FRDM schematic 證據。
+3. 不要把所有項目都寫成「不同」：
+   - GPIO offset 是硬體連線問題。
+   - clock/reserved-memory 是 BSP policy/tuning 問題。
+   - audio/display/camera 多半是 feature set 或外接模組問題。
+   - status = "okay" 是 Linux enablement 表達方式問題。
+
