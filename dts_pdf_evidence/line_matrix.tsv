@@ -1,0 +1,1111 @@
+1	// SPDX-License-Identifier: (GPL-2.0+ OR MIT)	SW	No direct FRDM PDF evidence assigned to this DTS line.
+2	/*	SW	No direct FRDM PDF evidence assigned to this DTS line.
+3	 * Copyright 2025 NXP	SW	No direct FRDM PDF evidence assigned to this DTS line.
+4	 */	SW	No direct FRDM PDF evidence assigned to this DTS line.
+5		SW	No direct FRDM PDF evidence assigned to this DTS line.
+6	/dts-v1/;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+7		SW	No direct FRDM PDF evidence assigned to this DTS line.
+8	#include <dt-bindings/usb/pd.h>	SW	No direct FRDM PDF evidence assigned to this DTS line.
+9	#include "imx93.dtsi"	SW	No direct FRDM PDF evidence assigned to this DTS line.
+10		SW	No direct FRDM PDF evidence assigned to this DTS line.
+11	&ele_fw2 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+12		memory-region = <&ele_reserved>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+13	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+14		SW	No direct FRDM PDF evidence assigned to this DTS line.
+15	/ {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+16		model = "NXP FRDM-IMX93";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+17		compatible = "fsl,frdm-imx93", "fsl,imx93";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+18		SW	No direct FRDM PDF evidence assigned to this DTS line.
+19		chosen {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+20			stdout-path = &lpuart1;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+21		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+22		SW	No direct FRDM PDF evidence assigned to this DTS line.
+23		reserved-memory {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+24			#address-cells = <2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+25			#size-cells = <2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+26			ranges;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+27		SW	No direct FRDM PDF evidence assigned to this DTS line.
+28			linux,cma {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+29				compatible = "shared-dma-pool";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+30				reusable;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+31				alloc-ranges = <0 0x80000000 0 0x30000000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+32				size = <0 0x10000000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+33				linux,cma-default;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+34			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+35		SW	No direct FRDM PDF evidence assigned to this DTS line.
+36			ethosu_mem: ethosu_region@A8000000 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+37				compatible = "shared-dma-pool";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+38				reusable;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+39				reg = <0x0 0xA8000000 0x0 0x08000000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+40			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+41		SW	No direct FRDM PDF evidence assigned to this DTS line.
+42			vdev0vring0: vdev0vring0@a4000000 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+43				reg = <0 0xa4000000 0 0x8000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+44				no-map;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+45			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+46		SW	No direct FRDM PDF evidence assigned to this DTS line.
+47			vdev0vring1: vdev0vring1@a4008000 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+48				reg = <0 0xa4008000 0 0x8000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+49				no-map;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+50			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+51		SW	No direct FRDM PDF evidence assigned to this DTS line.
+52			vdev1vring0: vdev1vring0@a4010000 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+53				reg = <0 0xa4010000 0 0x8000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+54				no-map;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+55			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+56		SW	No direct FRDM PDF evidence assigned to this DTS line.
+57			vdev1vring1: vdev1vring1@a4018000 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+58				reg = <0 0xa4018000 0 0x8000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+59				no-map;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+60			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+61		SW	No direct FRDM PDF evidence assigned to this DTS line.
+62			rsc_table: rsc-table@2021e000 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+63				reg = <0 0x2021e000 0 0x1000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+64				no-map;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+65			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+66		SW	No direct FRDM PDF evidence assigned to this DTS line.
+67			vdevbuffer: vdevbuffer@a4020000 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+68				compatible = "shared-dma-pool";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+69				reg = <0 0xa4020000 0 0x100000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+70				no-map;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+71			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+72		SW	No direct FRDM PDF evidence assigned to this DTS line.
+73			ele_reserved: ele-reserved@a4120000 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+74				compatible = "shared-dma-pool";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+75				reg = <0 0xa4120000 0 0x100000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+76				no-map;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+77			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+78		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+79		SW	No direct FRDM PDF evidence assigned to this DTS line.
+80		ethosu {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+81			compatible = "arm,ethosu";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+82			fsl,cm33-proc = <&cm33>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+83			memory-region = <&ethosu_mem>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+84			power-domains = <&mlmix>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+85		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+86		SW	No direct FRDM PDF evidence assigned to this DTS line.
+87		reg_can2_stby: regulator-can2-stby {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+88			compatible = "regulator-fixed";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+89			regulator-name = "can2-stby";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+90			regulator-min-microvolt = <3300000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+91			regulator-max-microvolt = <3300000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+92			gpio = <&pcal6524 23 GPIO_ACTIVE_LOW>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+93			enable-active-low;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+94		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+95		SW	No direct FRDM PDF evidence assigned to this DTS line.
+96		reg_vexp_3v3: regulator-vexp-3v3 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+97			compatible = "regulator-fixed";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+98			regulator-name = "VEXP_3V3";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+99			gpio = <&pcal6524 2 GPIO_ACTIVE_HIGH>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+100			regulator-min-microvolt = <3300000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+101			regulator-max-microvolt = <3300000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+102			enable-active-high;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+103			vin-supply = <&buck4>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+104		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+105		SW	No direct FRDM PDF evidence assigned to this DTS line.
+106		reg_vexp_5v: regulator-vexp-5v {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+107			compatible = "regulator-fixed";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+108			regulator-name = "VEXP_5V";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+109			gpio = <&pcal6524 8 GPIO_ACTIVE_HIGH>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+110			regulator-min-microvolt = <5000000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+111			regulator-max-microvolt = <5000000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+112			enable-active-high;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+113		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+114		SW	No direct FRDM PDF evidence assigned to this DTS line.
+115		reg_vdd_5p0v: regulator-vdd-5p0v {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+116			compatible = "regulator-fixed";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+117			regulator-name = "VDD-5P0V";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+118			regulator-min-microvolt = <5000000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+119			regulator-max-microvolt = <5000000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+120			regulator-always-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+121		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+122		SW	No direct FRDM PDF evidence assigned to this DTS line.
+123		reg_vdd_12v: regulator-vdd-12v {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+124			compatible = "regulator-fixed";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+125			regulator-name = "reg_vdd_12v";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+126			regulator-min-microvolt = <12000000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+127			regulator-max-microvolt = <12000000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+128			gpio = <&pcal6524 14 GPIO_ACTIVE_HIGH>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+129			enable-active-high;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+130		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+131		SW	No direct FRDM PDF evidence assigned to this DTS line.
+132		reg_vref_1v8: regulator-adc-vref {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+133			compatible = "regulator-fixed";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+134			regulator-name = "vref_1v8";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+135			regulator-min-microvolt = <1800000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+136			regulator-max-microvolt = <1800000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+137		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+138		SW	No direct FRDM PDF evidence assigned to this DTS line.
+139		reg_usdhc2_vmmc: regulator-usdhc2 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+140			compatible = "regulator-fixed";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+141			pinctrl-names = "default";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+142			pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+143			regulator-name = "VSD_3V3";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+144			regulator-min-microvolt = <3300000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+145			regulator-max-microvolt = <3300000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+146			gpio = <&gpio3 7 GPIO_ACTIVE_HIGH>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+147			off-on-delay-us = <12000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+148			enable-active-high;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+149		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+150		SW	No direct FRDM PDF evidence assigned to this DTS line.
+151		reg_usdhc3_vmmc: regulator-usdhc3 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+152			compatible = "regulator-fixed";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+153			regulator-name = "WLAN_EN";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+154			regulator-min-microvolt = <3300000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+155			regulator-max-microvolt = <3300000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+156			gpio = <&pcal6524 20 GPIO_ACTIVE_HIGH>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+157			/*	SW	No direct FRDM PDF evidence assigned to this DTS line.
+158			 * IW612 wifi chip needs more delay than other wifi chips to complete	SW	No direct FRDM PDF evidence assigned to this DTS line.
+159			 * the host interface initialization after power up, otherwise the	SW	No direct FRDM PDF evidence assigned to this DTS line.
+160			 * internal state of IW612 may be unstable, resulting in the failure of	SW	No direct FRDM PDF evidence assigned to this DTS line.
+161			 * the SDIO3.0 switch voltage.	SW	No direct FRDM PDF evidence assigned to this DTS line.
+162			 */	SW	No direct FRDM PDF evidence assigned to this DTS line.
+163			startup-delay-us = <20000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+164			enable-active-high;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+165		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+166		SW	No direct FRDM PDF evidence assigned to this DTS line.
+167		usdhc3_pwrseq: usdhc3_pwrseq {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+168			compatible = "mmc-pwrseq-simple";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+169			reset-gpios = <&pcal6524 12 GPIO_ACTIVE_LOW>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+170		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+171		SW	No direct FRDM PDF evidence assigned to this DTS line.
+172		reg_dvdd_1v2: regulator-dvdd {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+173			compatible = "regulator-fixed";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+174			regulator-name = "DVDD_1V2";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+175			gpio = <&adp5585_isp 7 GPIO_ACTIVE_HIGH>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+176			regulator-min-microvolt = <1200000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+177			regulator-max-microvolt = <1200000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+178			enable-active-high;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+179		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+180		SW	No direct FRDM PDF evidence assigned to this DTS line.
+181		reg_vddio_1v8: regulator-vddo {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+182			compatible = "regulator-fixed";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+183			regulator-name = "VDDIO_1V8";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+184			gpio = <&adp5585_isp 6 GPIO_ACTIVE_HIGH>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+185			regulator-min-microvolt = <1800000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+186			regulator-max-microvolt = <1800000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+187			enable-active-high;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+188		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+189		SW	No direct FRDM PDF evidence assigned to this DTS line.
+190		reg_avdd_2v8: regulator-avdd {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+191			compatible = "regulator-fixed";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+192			regulator-name = "AVDD_2V8";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+193			gpio = <&adp5585_isp 8 GPIO_ACTIVE_HIGH>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+194			regulator-min-microvolt = <2800000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+195			regulator-max-microvolt = <2800000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+196			enable-active-high;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+197		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+198		SW	No direct FRDM PDF evidence assigned to this DTS line.
+199		reg_hmisc_vddio: regulator-hmisc-vddio {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+200			compatible = "regulator-fixed";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+201			regulator-name = "HMISC_VDDIO_1V8";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+202			gpio = <&adp5585_isp 10 GPIO_ACTIVE_HIGH>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+203			regulator-min-microvolt = <1800000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+204			regulator-max-microvolt = <1800000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+205			enable-active-high;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+206		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+207		SW	No direct FRDM PDF evidence assigned to this DTS line.
+208		sound-mqs {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+209			compatible = "fsl,imx6sx-sdb-mqs",	SW	No direct FRDM PDF evidence assigned to this DTS line.
+210				     "fsl,imx-audio-mqs";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+211			model = "mqs-audio";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+212			audio-cpu = <&sai1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+213			audio-codec = <&mqs1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+214		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+215		SW	No direct FRDM PDF evidence assigned to this DTS line.
+216		sw-keys {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+217			compatible = "gpio-keys";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+218		SW	No direct FRDM PDF evidence assigned to this DTS line.
+219			K2: user_btn1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+220				label = "User Button1";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+221				linux,code = <BTN_1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+222				gpios = <&pcal6524 5 GPIO_PULL_UP>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+223				interrupt-parent = <&pcal6524>;	E02	Interrupt parent uses the PCAL6524 GPIO expander shown in the FRDM PDF I2C table.
+224				interrupts = <5 IRQ_TYPE_EDGE_FALLING>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+225			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+226		SW	No direct FRDM PDF evidence assigned to this DTS line.
+227			K3: user_btn2 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+228				label = "User Button2";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+229				linux,code = <BTN_2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+230				gpios = <&pcal6524 6 GPIO_PULL_UP>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+231				interrupt-parent = <&pcal6524>;	E02	Interrupt parent uses the PCAL6524 GPIO expander shown in the FRDM PDF I2C table.
+232				interrupts = <6 IRQ_TYPE_EDGE_FALLING>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+233			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+234		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+235	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+236		SW	No direct FRDM PDF evidence assigned to this DTS line.
+237	&adc1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+238		vref-supply = <&reg_vref_1v8>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+239		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+240	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+241		SW	No direct FRDM PDF evidence assigned to this DTS line.
+242	&cm33 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+243		mbox-names = "tx", "rx", "rxdb";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+244		mboxes = <&mu1 0 1>,	SW	No direct FRDM PDF evidence assigned to this DTS line.
+245			 <&mu1 1 1>,	SW	No direct FRDM PDF evidence assigned to this DTS line.
+246			 <&mu1 3 1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+247		memory-region = <&vdevbuffer>, <&vdev0vring0>, <&vdev0vring1>,	SW	No direct FRDM PDF evidence assigned to this DTS line.
+248				<&vdev1vring0>, <&vdev1vring1>, <&rsc_table>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+249		fsl,startup-delay-ms = <500>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+250		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+251	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+252		SW	No direct FRDM PDF evidence assigned to this DTS line.
+253	&flexcan2 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+254		pinctrl-names = "default", "sleep";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+255		pinctrl-0 = <&pinctrl_flexcan2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+256		pinctrl-1 = <&pinctrl_flexcan2_sleep>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+257		xceiver-supply = <&reg_can2_stby>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+258		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+259	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+260		SW	No direct FRDM PDF evidence assigned to this DTS line.
+261	&mu1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+262		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+263	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+264		SW	No direct FRDM PDF evidence assigned to this DTS line.
+265	&mu2 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+266		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+267	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+268		SW	No direct FRDM PDF evidence assigned to this DTS line.
+269	&eqos {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+270		pinctrl-names = "default", "sleep";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+271		pinctrl-0 = <&pinctrl_eqos>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+272		pinctrl-1 = <&pinctrl_eqos_sleep>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+273		phy-mode = "rgmii-id";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+274		phy-handle = <&ethphy1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+275		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+276		SW	No direct FRDM PDF evidence assigned to this DTS line.
+277		mdio {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+278			compatible = "snps,dwmac-mdio";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+279			#address-cells = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+280			#size-cells = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+281			clock-frequency = <5000000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+282		SW	No direct FRDM PDF evidence assigned to this DTS line.
+283			ethphy1: ethernet-phy@1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+284				reg = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+285				reset-gpios = <&pcal6524 15 GPIO_ACTIVE_LOW>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+286				reset-assert-us = <10000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+287				reset-deassert-us = <80000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+288			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+289		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+290	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+291		SW	No direct FRDM PDF evidence assigned to this DTS line.
+292	&fec {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+293		pinctrl-names = "default", "sleep";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+294		pinctrl-0 = <&pinctrl_fec>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+295		pinctrl-1 = <&pinctrl_fec_sleep>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+296		phy-mode = "rgmii-id";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+297		phy-handle = <&ethphy2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+298		fsl,magic-packet;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+299		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+300		SW	No direct FRDM PDF evidence assigned to this DTS line.
+301		mdio {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+302			#address-cells = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+303			#size-cells = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+304			clock-frequency = <5000000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+305		SW	No direct FRDM PDF evidence assigned to this DTS line.
+306			ethphy2: ethernet-phy@2 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+307				reg = <2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+308				eee-broken-1000t;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+309				reset-gpios = <&pcal6524 16 GPIO_ACTIVE_LOW>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+310				reset-assert-us = <10000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+311				reset-deassert-us = <80000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+312			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+313		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+314	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+315		SW	No direct FRDM PDF evidence assigned to this DTS line.
+316	&lcdif {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+317		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+318		assigned-clock-rates = <1039500000>, <148444444>, <400000000>, <133333333>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+319	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+320		SW	No direct FRDM PDF evidence assigned to this DTS line.
+321	&lpm {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+322		soc-supply = <&buck1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+323		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+324	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+325		SW	No direct FRDM PDF evidence assigned to this DTS line.
+326	&ldb {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+327		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+328		SW	No direct FRDM PDF evidence assigned to this DTS line.
+329		lvds-channel@0 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+330			status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+331		SW	No direct FRDM PDF evidence assigned to this DTS line.
+332			port@1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+333				reg = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+334		SW	No direct FRDM PDF evidence assigned to this DTS line.
+335				ldb_out: endpoint {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+336					remote-endpoint = <&it6263_0_in>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+337				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+338			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+339		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+340	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+341		SW	No direct FRDM PDF evidence assigned to this DTS line.
+342	&ldb_phy {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+343		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+344	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+345		SW	No direct FRDM PDF evidence assigned to this DTS line.
+346	&lpi2c1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+347		#address-cells = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+348		#size-cells = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+349		clock-frequency = <400000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+350		pinctrl-names = "default", "sleep";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+351		pinctrl-0 = <&pinctrl_lpi2c1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+352		pinctrl-1 = <&pinctrl_lpi2c1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+353		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+354		SW	No direct FRDM PDF evidence assigned to this DTS line.
+355		lvds_bridge: lvds-to-hdmi-bridge@4c {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+356			compatible = "ite,it6263";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+357			reg = <0x4c>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+358			reset-gpio = <&pcal6524 21 GPIO_ACTIVE_LOW>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+359			status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+360		SW	No direct FRDM PDF evidence assigned to this DTS line.
+361			port {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+362				it6263_0_in: endpoint {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+363					remote-endpoint = <&ldb_out>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+364				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+365			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+366		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+367		SW	No direct FRDM PDF evidence assigned to this DTS line.
+368		pcal6408: gpio@20 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+369			compatible = "nxp,pcal9554b";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+370			reg = <0x20>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+371			gpio-controller;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+372			#gpio-cells = <2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+373			vcc-supply = <&reg_usdhc3_vmmc>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+374			status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+375		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+376		SW	No direct FRDM PDF evidence assigned to this DTS line.
+377	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+378		SW	No direct FRDM PDF evidence assigned to this DTS line.
+379	&lpi2c2 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+380		#address-cells = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+381		#size-cells = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+382		clock-frequency = <400000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+383		pinctrl-names = "default", "sleep";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+384		pinctrl-0 = <&pinctrl_lpi2c2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+385		pinctrl-1 = <&pinctrl_lpi2c2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+386		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+387		SW	No direct FRDM PDF evidence assigned to this DTS line.
+388		pmic@25 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+389			compatible = "nxp,pca9451a";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+390			reg = <0x25>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+391			interrupt-parent = <&pcal6524>;	E02	Interrupt parent uses the PCAL6524 GPIO expander shown in the FRDM PDF I2C table.
+392			interrupts = <11 IRQ_TYPE_EDGE_FALLING>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+393		SW	No direct FRDM PDF evidence assigned to this DTS line.
+394			regulators {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+395				buck1: BUCK1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+396					regulator-name = "BUCK1";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+397					regulator-min-microvolt = <610000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+398					regulator-max-microvolt = <950000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+399					regulator-boot-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+400					regulator-always-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+401					regulator-ramp-delay = <3125>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+402				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+403		SW	No direct FRDM PDF evidence assigned to this DTS line.
+404				buck2: BUCK2 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+405					regulator-name = "BUCK2";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+406					regulator-min-microvolt = <600000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+407					regulator-max-microvolt = <670000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+408					regulator-boot-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+409					regulator-always-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+410					regulator-ramp-delay = <3125>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+411				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+412		SW	No direct FRDM PDF evidence assigned to this DTS line.
+413				buck4: BUCK4{	SW	No direct FRDM PDF evidence assigned to this DTS line.
+414					regulator-name = "BUCK4";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+415					regulator-min-microvolt = <1620000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+416					regulator-max-microvolt = <3400000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+417					regulator-boot-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+418					regulator-always-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+419				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+420		SW	No direct FRDM PDF evidence assigned to this DTS line.
+421				buck5: BUCK5{	SW	No direct FRDM PDF evidence assigned to this DTS line.
+422					regulator-name = "BUCK5";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+423					regulator-min-microvolt = <1620000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+424					regulator-max-microvolt = <3400000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+425					regulator-boot-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+426					regulator-always-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+427				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+428		SW	No direct FRDM PDF evidence assigned to this DTS line.
+429				buck6: BUCK6 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+430					regulator-name = "BUCK6";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+431					regulator-min-microvolt = <1060000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+432					regulator-max-microvolt = <1140000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+433					regulator-boot-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+434					regulator-always-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+435				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+436		SW	No direct FRDM PDF evidence assigned to this DTS line.
+437				ldo1: LDO1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+438					regulator-name = "LDO1";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+439					regulator-min-microvolt = <1620000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+440					regulator-max-microvolt = <1980000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+441					regulator-boot-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+442					regulator-always-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+443				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+444		SW	No direct FRDM PDF evidence assigned to this DTS line.
+445				ldo4: LDO4 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+446					regulator-name = "LDO4";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+447					regulator-min-microvolt = <800000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+448					regulator-max-microvolt = <840000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+449					regulator-boot-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+450					regulator-always-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+451				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+452		SW	No direct FRDM PDF evidence assigned to this DTS line.
+453				ldo5: LDO5 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+454					regulator-name = "LDO5";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+455					regulator-min-microvolt = <1800000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+456					regulator-max-microvolt = <3300000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+457					regulator-boot-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+458					regulator-always-on;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+459				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+460			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+461		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+462		SW	No direct FRDM PDF evidence assigned to this DTS line.
+463		pcal6524: gpio@22 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+464			compatible = "nxp,pcal6524";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+465			pinctrl-names = "default";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+466			pinctrl-0 = <&pinctrl_pcal6524>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+467			reg = <0x22>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+468			gpio-controller;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+469			#gpio-cells = <2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+470			interrupt-controller;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+471			#interrupt-cells = <2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+472			interrupt-parent = <&gpio3>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+473			interrupts = <27 IRQ_TYPE_LEVEL_LOW>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+474		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+475	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+476		SW	No direct FRDM PDF evidence assigned to this DTS line.
+477	&lpi2c3 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+478		clock-frequency = <400000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+479		pinctrl-names = "default";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+480		pinctrl-0 = <&pinctrl_lpi2c3>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+481		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+482		SW	No direct FRDM PDF evidence assigned to this DTS line.
+483		adp5585_isp: io-expander-isp@34 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+484			compatible = "adi,adp5585-01", "adi,adp5585";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+485			reg = <0x34>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+486			gpio-controller;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+487			#gpio-cells = <2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+488			#pwm-cells = <3>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+489		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+490		SW	No direct FRDM PDF evidence assigned to this DTS line.
+491		ap1302: ap1302_mipi@3c {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+492			compatible = "onnn,ap1302";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+493			reg = <0x3c>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+494			clocks = <&clk IMX93_CLK_24M>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+495			reset-gpios   = <&pcal6524 22 GPIO_ACTIVE_LOW>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+496			isp_en-gpios  = <&adp5585_isp 2 GPIO_ACTIVE_HIGH>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+497			orientation = <2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+498			rotation = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+499			DVDD-supply   = <&reg_dvdd_1v2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+500			VDDIO_HMISC-supply  = <&reg_hmisc_vddio>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+501			VDDIO_SMISC-supply   = <&reg_hmisc_vddio>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+502			status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+503		SW	No direct FRDM PDF evidence assigned to this DTS line.
+504			ports {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+505				#address-cells = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+506				#size-cells = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+507		SW	No direct FRDM PDF evidence assigned to this DTS line.
+508				port@0 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+509					reg = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+510				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+511		SW	No direct FRDM PDF evidence assigned to this DTS line.
+512				port@1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+513					reg = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+514				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+515		SW	No direct FRDM PDF evidence assigned to this DTS line.
+516				port@2 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+517					reg = <2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+518		SW	No direct FRDM PDF evidence assigned to this DTS line.
+519					isp_out: endpoint {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+520						remote-endpoint = <&mipi_csi_in>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+521						data-lanes = <1 2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+522					};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+523				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+524			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+525		SW	No direct FRDM PDF evidence assigned to this DTS line.
+526			sensors {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+527				#address-cells = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+528				#size-cells = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+529		SW	No direct FRDM PDF evidence assigned to this DTS line.
+530				onnn,model = "onnn,ar0144";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+531		SW	No direct FRDM PDF evidence assigned to this DTS line.
+532				sensor@0 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+533					reg = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+534		SW	No direct FRDM PDF evidence assigned to this DTS line.
+535					vdd-supply = <&reg_dvdd_1v2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+536					vddio-supply = <&reg_vddio_1v8>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+537					vaa-supply = <&reg_avdd_2v8>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+538				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+539			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+540		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+541		SW	No direct FRDM PDF evidence assigned to this DTS line.
+542		pcf2131: rtc@53 {	E04	FRDM PDF I2C table shows PCF2131TF RTC at address 0x53; DTS models it as pcf2131: rtc@53.
+543				compatible = "nxp,pcf2131";	E04	FRDM PDF I2C table shows PCF2131TF RTC at address 0x53; DTS models it as pcf2131: rtc@53.
+544				reg = <0x53>;	E04	FRDM PDF I2C table shows PCF2131TF RTC at address 0x53; DTS models it as pcf2131: rtc@53.
+545				interrupt-parent = <&pcal6524>;	E02	Interrupt parent uses the PCAL6524 GPIO expander shown in the FRDM PDF I2C table.
+546				interrupts = <1 IRQ_TYPE_EDGE_FALLING>;	E04	RTC interrupt line is a DTS interrupt configuration; FRDM PDF evidence only confirms the PCF2131 RTC device/address, not the Linux IRQ trigger policy.
+547				status = "okay";	SW	Linux enablement flag; FRDM schematic does not directly prove status = okay.
+548		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+549		SW	No direct FRDM PDF evidence assigned to this DTS line.
+550		ptn5110: tcpc@50 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+551			compatible = "nxp,ptn5110", "tcpci";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+552			reg = <0x50>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+553			interrupt-parent = <&gpio3>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+554			interrupts = <27 IRQ_TYPE_LEVEL_LOW>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+555		SW	No direct FRDM PDF evidence assigned to this DTS line.
+556			typec1_con: connector {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+557				compatible = "usb-c-connector";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+558				label = "USB-C";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+559				power-role = "dual";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+560				data-role = "dual";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+561				try-power-role = "sink";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+562				source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+563				sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)	SW	No direct FRDM PDF evidence assigned to this DTS line.
+564					     PDO_VAR(5000, 20000, 3000)>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+565				op-sink-microwatt = <15000000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+566				self-powered;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+567		SW	No direct FRDM PDF evidence assigned to this DTS line.
+568				ports {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+569					#address-cells = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+570					#size-cells = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+571		SW	No direct FRDM PDF evidence assigned to this DTS line.
+572					port@0 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+573						reg = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+574		SW	No direct FRDM PDF evidence assigned to this DTS line.
+575						typec1_dr_sw: endpoint {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+576							remote-endpoint = <&usb1_drd_sw>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+577						};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+578					};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+579				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+580			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+581		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+582	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+583		SW	No direct FRDM PDF evidence assigned to this DTS line.
+584	&lpspi3 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+585		fsl,spi-num-chipselects = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+586		pinctrl-names = "default";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+587		pinctrl-0 = <&pinctrl_lpspi3>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+588		cs-gpios = <&gpio2 8 GPIO_ACTIVE_LOW>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+589		pinctrl-assert-gpios = <&pcal6408 0 GPIO_ACTIVE_HIGH>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+590		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+591		SW	No direct FRDM PDF evidence assigned to this DTS line.
+592		spidev0: spi@0 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+593			reg = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+594			compatible = "lwn,bk4";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+595			spi-max-frequency = <1000000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+596		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+597	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+598		SW	No direct FRDM PDF evidence assigned to this DTS line.
+599	&lpuart1 { /* console */	SW	No direct FRDM PDF evidence assigned to this DTS line.
+600		pinctrl-names = "default";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+601		pinctrl-0 = <&pinctrl_uart1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+602		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+603	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+604		SW	No direct FRDM PDF evidence assigned to this DTS line.
+605	&lpuart5 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+606		/* BT */	SW	No direct FRDM PDF evidence assigned to this DTS line.
+607		pinctrl-names = "default";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+608		pinctrl-assert-gpios = <&pcal6524 19 GPIO_ACTIVE_HIGH>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+609		pinctrl-0 = <&pinctrl_uart5>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+610		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+611		SW	No direct FRDM PDF evidence assigned to this DTS line.
+612		bluetooth {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+613			compatible = "nxp,88w8987-bt";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+614		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+615	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+616		SW	No direct FRDM PDF evidence assigned to this DTS line.
+617	&media_blk_ctrl {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+618		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+619	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+620		SW	No direct FRDM PDF evidence assigned to this DTS line.
+621	&mqs1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+622		pinctrl-names = "default";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+623		pinctrl-0 = <&pinctrl_mqs1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+624		clocks = <&clk IMX93_CLK_MQS1_GATE>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+625		clock-names = "mclk";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+626		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+627	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+628		SW	No direct FRDM PDF evidence assigned to this DTS line.
+629	&sai1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+630		#sound-dai-cells = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+631		clocks = <&clk IMX93_CLK_SAI1_IPG>, <&clk IMX93_CLK_DUMMY>,	SW	No direct FRDM PDF evidence assigned to this DTS line.
+632			 <&clk IMX93_CLK_SAI1_GATE>, <&clk IMX93_CLK_DUMMY>,	SW	No direct FRDM PDF evidence assigned to this DTS line.
+633			 <&clk IMX93_CLK_DUMMY>, <&clk IMX93_CLK_AUDIO_PLL>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+634		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3", "pll8k";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+635		assigned-clocks = <&clk IMX93_CLK_SAI1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+636		assigned-clock-parents = <&clk IMX93_CLK_AUDIO_PLL>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+637		assigned-clock-rates = <24576000>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+638		fsl,sai-mclk-direction-output;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+639		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+640	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+641		SW	No direct FRDM PDF evidence assigned to this DTS line.
+642	&tpm3 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+643		pinctrl-names = "default";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+644		pinctrl-0 = <&pinctrl_led1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+645		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+646	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+647		SW	No direct FRDM PDF evidence assigned to this DTS line.
+648	&tpm4 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+649		pinctrl-names = "default";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+650		pinctrl-0 = <&pinctrl_led2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+651		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+652	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+653		SW	No direct FRDM PDF evidence assigned to this DTS line.
+654	&usbotg1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+655		dr_mode = "otg";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+656		hnp-disable;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+657		srp-disable;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+658		adp-disable;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+659		usb-role-switch;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+660		disable-over-current;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+661		samsung,picophy-pre-emp-curr-control = <3>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+662		samsung,picophy-dc-vol-level-adjust = <7>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+663		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+664		SW	No direct FRDM PDF evidence assigned to this DTS line.
+665		port {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+666			usb1_drd_sw: endpoint {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+667				remote-endpoint = <&typec1_dr_sw>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+668			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+669		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+670	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+671		SW	No direct FRDM PDF evidence assigned to this DTS line.
+672	&usbotg2 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+673		dr_mode = "host";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+674		disable-over-current;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+675		samsung,picophy-pre-emp-curr-control = <3>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+676		samsung,picophy-dc-vol-level-adjust = <7>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+677		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+678		SW	No direct FRDM PDF evidence assigned to this DTS line.
+679	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+680		SW	No direct FRDM PDF evidence assigned to this DTS line.
+681	&usdhc1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+682		pinctrl-names = "default", "state_100mhz", "state_200mhz";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+683		pinctrl-0 = <&pinctrl_usdhc1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+684		pinctrl-1 = <&pinctrl_usdhc1_100mhz>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+685		pinctrl-2 = <&pinctrl_usdhc1_200mhz>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+686		bus-width = <8>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+687		fsl,tuning-step = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+688		non-removable;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+689		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+690	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+691		SW	No direct FRDM PDF evidence assigned to this DTS line.
+692	&usdhc2 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+693		pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+694		pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+695		pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+696		pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+697		pinctrl-3 = <&pinctrl_usdhc2_sleep>, <&pinctrl_usdhc2_gpio_sleep>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+698		cd-gpios = <&gpio3 00 GPIO_ACTIVE_LOW>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+699		fsl,cd-gpio-wakeup-disable;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+700		vmmc-supply = <&reg_usdhc2_vmmc>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+701		bus-width = <4>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+702		fsl,tuning-step = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+703		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+704		no-mmc;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+705	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+706		SW	No direct FRDM PDF evidence assigned to this DTS line.
+707	&usdhc3 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+708		pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+709		pinctrl-0 = <&pinctrl_usdhc3>, <&pinctrl_usdhc3_wlan>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+710		pinctrl-1 = <&pinctrl_usdhc3_100mhz>, <&pinctrl_usdhc3_wlan>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+711		pinctrl-2 = <&pinctrl_usdhc3_200mhz>, <&pinctrl_usdhc3_wlan>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+712		pinctrl-3 = <&pinctrl_usdhc3_sleep>, <&pinctrl_usdhc3_wlan>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+713		mmc-pwrseq = <&usdhc3_pwrseq>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+714		vmmc-supply = <&reg_usdhc3_vmmc>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+715		bus-width = <4>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+716		keep-power-in-suspend;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+717		non-removable;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+718		wakeup-source;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+719		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+720		SW	No direct FRDM PDF evidence assigned to this DTS line.
+721		wifi_wake_host {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+722			compatible = "nxp,wifi-wake-host";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+723			interrupt-parent = <&gpio3>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+724			interrupts = <26 IRQ_TYPE_LEVEL_LOW>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+725			interrupt-names = "host-wake";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+726		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+727	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+728		SW	No direct FRDM PDF evidence assigned to this DTS line.
+729	&wdog3 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+730		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+731	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+732		SW	No direct FRDM PDF evidence assigned to this DTS line.
+733	&iomuxc {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+734		pinctrl_eqos: eqosgrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+735			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+736				MX93_PAD_ENET1_MDC__ENET_QOS_MDC			0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+737				MX93_PAD_ENET1_MDIO__ENET_QOS_MDIO			0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+738				MX93_PAD_ENET1_RD0__ENET_QOS_RGMII_RD0			0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+739				MX93_PAD_ENET1_RD1__ENET_QOS_RGMII_RD1			0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+740				MX93_PAD_ENET1_RD2__ENET_QOS_RGMII_RD2			0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+741				MX93_PAD_ENET1_RD3__ENET_QOS_RGMII_RD3			0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+742				MX93_PAD_ENET1_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x58e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+743				MX93_PAD_ENET1_RX_CTL__ENET_QOS_RGMII_RX_CTL		0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+744				MX93_PAD_ENET1_TD0__ENET_QOS_RGMII_TD0			0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+745				MX93_PAD_ENET1_TD1__ENET_QOS_RGMII_TD1			0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+746				MX93_PAD_ENET1_TD2__ENET_QOS_RGMII_TD2			0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+747				MX93_PAD_ENET1_TD3__ENET_QOS_RGMII_TD3			0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+748				MX93_PAD_ENET1_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x58e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+749				MX93_PAD_ENET1_TX_CTL__ENET_QOS_RGMII_TX_CTL		0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+750			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+751		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+752		SW	No direct FRDM PDF evidence assigned to this DTS line.
+753		pinctrl_eqos_sleep: eqossleepgrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+754			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+755				MX93_PAD_ENET1_MDC__GPIO4_IO00				0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+756				MX93_PAD_ENET1_MDIO__GPIO4_IO01				0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+757				MX93_PAD_ENET1_RD0__GPIO4_IO10                          0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+758				MX93_PAD_ENET1_RD1__GPIO4_IO11				0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+759				MX93_PAD_ENET1_RD2__GPIO4_IO12				0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+760				MX93_PAD_ENET1_RD3__GPIO4_IO13				0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+761				MX93_PAD_ENET1_RXC__GPIO4_IO09                          0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+762				MX93_PAD_ENET1_RX_CTL__GPIO4_IO08			0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+763				MX93_PAD_ENET1_TD0__GPIO4_IO05                          0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+764				MX93_PAD_ENET1_TD1__GPIO4_IO04                          0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+765				MX93_PAD_ENET1_TD2__GPIO4_IO03				0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+766				MX93_PAD_ENET1_TD3__GPIO4_IO02				0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+767				MX93_PAD_ENET1_TXC__GPIO4_IO07                          0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+768				MX93_PAD_ENET1_TX_CTL__GPIO4_IO06                       0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+769			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+770		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+771		SW	No direct FRDM PDF evidence assigned to this DTS line.
+772		pinctrl_fec: fecgrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+773			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+774				MX93_PAD_ENET2_MDC__ENET1_MDC			0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+775				MX93_PAD_ENET2_MDIO__ENET1_MDIO			0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+776				MX93_PAD_ENET2_RD0__ENET1_RGMII_RD0		0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+777				MX93_PAD_ENET2_RD1__ENET1_RGMII_RD1		0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+778				MX93_PAD_ENET2_RD2__ENET1_RGMII_RD2		0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+779				MX93_PAD_ENET2_RD3__ENET1_RGMII_RD3		0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+780				MX93_PAD_ENET2_RXC__ENET1_RGMII_RXC		0x58e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+781				MX93_PAD_ENET2_RX_CTL__ENET1_RGMII_RX_CTL	0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+782				MX93_PAD_ENET2_TD0__ENET1_RGMII_TD0		0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+783				MX93_PAD_ENET2_TD1__ENET1_RGMII_TD1		0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+784				MX93_PAD_ENET2_TD2__ENET1_RGMII_TD2		0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+785				MX93_PAD_ENET2_TD3__ENET1_RGMII_TD3		0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+786				MX93_PAD_ENET2_TXC__ENET1_RGMII_TXC		0x58e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+787				MX93_PAD_ENET2_TX_CTL__ENET1_RGMII_TX_CTL	0x57e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+788			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+789		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+790		SW	No direct FRDM PDF evidence assigned to this DTS line.
+791		pinctrl_fec_sleep: fecsleepgrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+792			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+793				MX93_PAD_ENET2_MDC__GPIO4_IO14			0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+794				MX93_PAD_ENET2_MDIO__GPIO4_IO15			0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+795				MX93_PAD_ENET2_RD0__GPIO4_IO24			0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+796				MX93_PAD_ENET2_RD1__GPIO4_IO25			0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+797				MX93_PAD_ENET2_RD2__GPIO4_IO26			0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+798				MX93_PAD_ENET2_RD3__GPIO4_IO27			0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+799				MX93_PAD_ENET2_RXC__GPIO4_IO23                  0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+800				MX93_PAD_ENET2_RX_CTL__GPIO4_IO22		0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+801				MX93_PAD_ENET2_TD0__GPIO4_IO19			0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+802				MX93_PAD_ENET2_TD1__GPIO4_IO18			0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+803				MX93_PAD_ENET2_TD2__GPIO4_IO17			0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+804				MX93_PAD_ENET2_TD3__GPIO4_IO16			0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+805				MX93_PAD_ENET2_TXC__GPIO4_IO21                  0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+806				MX93_PAD_ENET2_TX_CTL__GPIO4_IO20               0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+807			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+808		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+809		SW	No direct FRDM PDF evidence assigned to this DTS line.
+810		pinctrl_flexcan2: flexcan2grp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+811			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+812				MX93_PAD_GPIO_IO25__CAN2_TX	0x139e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+813				MX93_PAD_GPIO_IO27__CAN2_RX	0x139e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+814			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+815		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+816		pinctrl_flexcan2_sleep: flexcan2sleepgrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+817			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+818				MX93_PAD_GPIO_IO25__GPIO2_IO25  0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+819				MX93_PAD_GPIO_IO27__GPIO2_IO27	0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+820			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+821		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+822		SW	No direct FRDM PDF evidence assigned to this DTS line.
+823		pinctrl_led1: ledsgrp1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+824			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+825				MX93_PAD_GPIO_IO04__TPM3_CH0  0x02	SW	No direct FRDM PDF evidence assigned to this DTS line.
+826				MX93_PAD_GPIO_IO12__TPM3_CH2  0x02	SW	No direct FRDM PDF evidence assigned to this DTS line.
+827			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+828		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+829		pinctrl_led2: ledsgrp2 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+830			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+831				MX93_PAD_GPIO_IO13__TPM4_CH2  0x02	SW	No direct FRDM PDF evidence assigned to this DTS line.
+832			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+833		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+834		SW	No direct FRDM PDF evidence assigned to this DTS line.
+835		pinctrl_lpi2c1: lpi2c1grp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+836			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+837				MX93_PAD_I2C1_SCL__LPI2C1_SCL			0x40000b9e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+838				MX93_PAD_I2C1_SDA__LPI2C1_SDA			0x40000b9e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+839			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+840		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+841		SW	No direct FRDM PDF evidence assigned to this DTS line.
+842		pinctrl_lpi2c2: lpi2c2grp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+843			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+844				MX93_PAD_I2C2_SCL__LPI2C2_SCL			0x40000b9e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+845				MX93_PAD_I2C2_SDA__LPI2C2_SDA			0x40000b9e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+846			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+847		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+848		SW	No direct FRDM PDF evidence assigned to this DTS line.
+849		pinctrl_lpi2c3: lpi2c3grp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+850			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+851				MX93_PAD_GPIO_IO28__LPI2C3_SDA			0x40000b9e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+852				MX93_PAD_GPIO_IO29__LPI2C3_SCL			0x40000b9e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+853			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+854		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+855		SW	No direct FRDM PDF evidence assigned to this DTS line.
+856		pinctrl_lpspi3: lpspi3grp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+857			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+858				MX93_PAD_GPIO_IO08__GPIO2_IO08      0x3fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+859				MX93_PAD_GPIO_IO09__LPSPI3_SIN      0x3fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+860				MX93_PAD_GPIO_IO10__LPSPI3_SOUT     0x3fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+861				MX93_PAD_GPIO_IO11__LPSPI3_SCK      0x3fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+862			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+863		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+864		SW	No direct FRDM PDF evidence assigned to this DTS line.
+865		pinctrl_pcal6524: pcal6524grp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+866			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+867				MX93_PAD_CCM_CLKO2__GPIO3_IO27			0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+868			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+869		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+870		SW	No direct FRDM PDF evidence assigned to this DTS line.
+871		pinctrl_uart1: uart1grp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+872			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+873				MX93_PAD_UART1_RXD__LPUART1_RX			0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+874				MX93_PAD_UART1_TXD__LPUART1_TX			0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+875			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+876		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+877		SW	No direct FRDM PDF evidence assigned to this DTS line.
+878		pinctrl_uart5: uart5grp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+879			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+880				MX93_PAD_DAP_TDO_TRACESWO__LPUART5_TX	0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+881				MX93_PAD_DAP_TDI__LPUART5_RX		0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+882				MX93_PAD_DAP_TMS_SWDIO__LPUART5_RTS_B	0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+883				MX93_PAD_DAP_TCLK_SWCLK__LPUART5_CTS_B	0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+884			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+885		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+886		SW	No direct FRDM PDF evidence assigned to this DTS line.
+887		/* need to config the SION for data and cmd pad, refer to ERR052021 */	SW	No direct FRDM PDF evidence assigned to this DTS line.
+888		pinctrl_usdhc1: usdhc1grp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+889			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+890				MX93_PAD_SD1_CLK__USDHC1_CLK		0x1582	SW	No direct FRDM PDF evidence assigned to this DTS line.
+891				MX93_PAD_SD1_CMD__USDHC1_CMD		0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+892				MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+893				MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+894				MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+895				MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+896				MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+897				MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+898				MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+899				MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+900				MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x1582	SW	No direct FRDM PDF evidence assigned to this DTS line.
+901			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+902		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+903		SW	No direct FRDM PDF evidence assigned to this DTS line.
+904		/* need to config the SION for data and cmd pad, refer to ERR052021 */	SW	No direct FRDM PDF evidence assigned to this DTS line.
+905		pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+906			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+907				MX93_PAD_SD1_CLK__USDHC1_CLK		0x158e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+908				MX93_PAD_SD1_CMD__USDHC1_CMD		0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+909				MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+910				MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+911				MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+912				MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+913				MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+914				MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+915				MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+916				MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+917				MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x158e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+918			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+919		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+920		SW	No direct FRDM PDF evidence assigned to this DTS line.
+921		/* need to config the SION for data and cmd pad, refer to ERR052021 */	SW	No direct FRDM PDF evidence assigned to this DTS line.
+922		pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+923			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+924				MX93_PAD_SD1_CLK__USDHC1_CLK		0x15fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+925				MX93_PAD_SD1_CMD__USDHC1_CMD		0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+926				MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+927				MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+928				MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+929				MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+930				MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+931				MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+932				MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+933				MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+934				MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x15fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+935			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+936		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+937		SW	No direct FRDM PDF evidence assigned to this DTS line.
+938		pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+939			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+940				MX93_PAD_SD2_RESET_B__GPIO3_IO07	0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+941			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+942		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+943		SW	No direct FRDM PDF evidence assigned to this DTS line.
+944		pinctrl_usdhc2_gpio: usdhc2gpiogrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+945			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+946				MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+947			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+948		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+949		SW	No direct FRDM PDF evidence assigned to this DTS line.
+950		pinctrl_usdhc2_gpio_sleep: usdhc2gpiosleepgrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+951			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+952				MX93_PAD_SD2_CD_B__GPIO3_IO00		0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+953			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+954		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+955		SW	No direct FRDM PDF evidence assigned to this DTS line.
+956		/* need to config the SION for data and cmd pad, refer to ERR052021 */	SW	No direct FRDM PDF evidence assigned to this DTS line.
+957		pinctrl_usdhc2: usdhc2grp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+958			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+959				MX93_PAD_SD2_CLK__USDHC2_CLK		0x1582	SW	No direct FRDM PDF evidence assigned to this DTS line.
+960				MX93_PAD_SD2_CMD__USDHC2_CMD		0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+961				MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+962				MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+963				MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+964				MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+965				MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+966			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+967		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+968		SW	No direct FRDM PDF evidence assigned to this DTS line.
+969		/* need to config the SION for data and cmd pad, refer to ERR052021 */	SW	No direct FRDM PDF evidence assigned to this DTS line.
+970		pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+971			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+972				MX93_PAD_SD2_CLK__USDHC2_CLK		0x158e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+973				MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+974				MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+975				MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+976				MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+977				MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+978				MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+979			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+980		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+981		SW	No direct FRDM PDF evidence assigned to this DTS line.
+982		/* need to config the SION for data and cmd pad, refer to ERR052021 */	SW	No direct FRDM PDF evidence assigned to this DTS line.
+983		pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+984			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+985				MX93_PAD_SD2_CLK__USDHC2_CLK		0x15fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+986				MX93_PAD_SD2_CMD__USDHC2_CMD		0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+987				MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+988				MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+989				MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+990				MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+991				MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+992			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+993		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+994		SW	No direct FRDM PDF evidence assigned to this DTS line.
+995		pinctrl_usdhc2_sleep: usdhc2sleepgrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+996			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+997				MX93_PAD_SD2_CLK__GPIO3_IO01            0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+998				MX93_PAD_SD2_CMD__GPIO3_IO02		0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+999				MX93_PAD_SD2_DATA0__GPIO3_IO03		0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1000				MX93_PAD_SD2_DATA1__GPIO3_IO04		0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1001				MX93_PAD_SD2_DATA2__GPIO3_IO05		0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1002				MX93_PAD_SD2_DATA3__GPIO3_IO06		0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1003				MX93_PAD_SD2_VSELECT__GPIO3_IO19	0x51e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1004			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1005		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1006		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1007		/* need to config the SION for data and cmd pad, refer to ERR052021 */	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1008		pinctrl_usdhc3: usdhc3grp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1009			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1010				MX93_PAD_SD3_CLK__USDHC3_CLK		0x1582	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1011				MX93_PAD_SD3_CMD__USDHC3_CMD		0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1012				MX93_PAD_SD3_DATA0__USDHC3_DATA0	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1013				MX93_PAD_SD3_DATA1__USDHC3_DATA1	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1014				MX93_PAD_SD3_DATA2__USDHC3_DATA2	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1015				MX93_PAD_SD3_DATA3__USDHC3_DATA3	0x40001382	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1016			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1017		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1018		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1019		/* need to config the SION for data and cmd pad, refer to ERR052021 */	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1020		pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1021			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1022				MX93_PAD_SD3_CLK__USDHC3_CLK		0x158e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1023				MX93_PAD_SD3_CMD__USDHC3_CMD		0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1024				MX93_PAD_SD3_DATA0__USDHC3_DATA0	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1025				MX93_PAD_SD3_DATA1__USDHC3_DATA1	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1026				MX93_PAD_SD3_DATA2__USDHC3_DATA2	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1027				MX93_PAD_SD3_DATA3__USDHC3_DATA3	0x4000138e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1028			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1029		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1030		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1031		/* need to config the SION for data and cmd pad, refer to ERR052021 */	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1032		pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1033			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1034				MX93_PAD_SD3_CLK__USDHC3_CLK		0x15fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1035				MX93_PAD_SD3_CMD__USDHC3_CMD		0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1036				MX93_PAD_SD3_DATA0__USDHC3_DATA0	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1037				MX93_PAD_SD3_DATA1__USDHC3_DATA1	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1038				MX93_PAD_SD3_DATA2__USDHC3_DATA2	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1039				MX93_PAD_SD3_DATA3__USDHC3_DATA3	0x400013fe	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1040			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1041		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1042		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1043		pinctrl_usdhc3_sleep: usdhc3grpsleep {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1044			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1045				MX93_PAD_SD3_CLK__GPIO3_IO20		0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1046				MX93_PAD_SD3_CMD__GPIO3_IO21		0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1047				MX93_PAD_SD3_DATA0__GPIO3_IO22		0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1048				MX93_PAD_SD3_DATA1__GPIO3_IO23		0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1049				MX93_PAD_SD3_DATA2__GPIO3_IO24		0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1050				MX93_PAD_SD3_DATA3__GPIO3_IO25		0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1051			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1052		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1053		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1054		pinctrl_usdhc3_wlan: usdhc3wlangrp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1055			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1056				MX93_PAD_CCM_CLKO1__GPIO3_IO26		0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1057			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1058		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1059		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1060		pinctrl_mqs1: mqs1grp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1061			fsl,pins = <	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1062				MX93_PAD_PDM_CLK__MQS1_LEFT		0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1063				MX93_PAD_PDM_BIT_STREAM0__MQS1_RIGHT	0x31e	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1064			>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1065		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1066	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1067		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1068	&epxp {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1069		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1070	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1071		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1072	&isi {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1073		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1074		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1075		port {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1076			isi_in: endpoint {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1077				remote-endpoint = <&mipi_csi_out>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1078			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1079		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1080	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1081		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1082	&mipi_csi {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1083		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1084		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1085		ports {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1086			#address-cells = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1087			#size-cells = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1088		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1089			port@0 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1090				reg = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1091		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1092				mipi_csi_in: endpoint {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1093					remote-endpoint = <&isp_out>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1094					data-lanes = <1 2>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1095					clock-lanes = <0>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1096				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1097			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1098		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1099			port@1 {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1100				reg = <1>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1101		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1102				mipi_csi_out: endpoint {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1103					remote-endpoint = <&isi_in>;	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1104				};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1105			};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1106		};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1107	};	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1108		SW	No direct FRDM PDF evidence assigned to this DTS line.
+1109	&dphy_rx {	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1110		status = "okay";	SW	No direct FRDM PDF evidence assigned to this DTS line.
+1111	};	SW	No direct FRDM PDF evidence assigned to this DTS line.

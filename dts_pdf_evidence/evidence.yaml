@@ -1,0 +1,600 @@
+version: 1
+description: FRDM-only DTS-to-PDF evidence definitions. Only PDFs under FRDM-IMX93-DESIGNFILES/PDF
+  are treated as evidence.
+evidence:
+- id: E01
+  pdf: FRDM
+  page: 22
+  term: PCA9451AHN
+  kind: i2c
+  dts: '&lpi2c2/pmic@25'
+  summary: PMIC PCA9451A at I2C address 0x25 backs compatible = nxp,pca9451a and the
+    BUCK/LDO regulator nodes.
+  verification:
+  - pdf: FRDM
+    page: 22
+    required_terms:
+    - PCA9451AHN
+- id: E02
+  pdf: FRDM
+  page: 22
+  term: PCAL6524HEAZ
+  kind: i2c
+  dts: '&lpi2c2/pcal6524 gpio@22'
+  summary: IO expander PCAL6524 at I2C address 0x22 backs the pcal6524 GPIO controller
+    used by resets, enables, and IRQs.
+  verification:
+  - pdf: FRDM
+    page: 22
+    required_terms:
+    - PCAL6524HEAZ
+- id: E03
+  pdf: FRDM
+  page: 22
+  term: PTN5110NHQZ
+  kind: i2c
+  dts: '&lpi2c3/ptn5110 tcpc@50'
+  summary: USB Type-C PD PHY PTN5110 at I2C address 0x50 backs the tcpci/usb-c-connector
+    node.
+  verification:
+  - pdf: FRDM
+    page: 22
+    required_terms:
+    - PTN5110NHQZ
+- id: E04
+  pdf: FRDM
+  page: 22
+  term: PCF2131TF
+  kind: i2c
+  dts: '&lpi2c3/pcf2131 rtc@53'
+  summary: External RTC PCF2131 at I2C address 0x53 backs alias rtc0 and rtc@53.
+  verification:
+  - pdf: FRDM
+    page: 22
+    required_terms:
+    - PCF2131TF
+- id: E05
+  pdf: FRDM
+  page: 23
+  term: UART1_RXD
+  kind: pinmux
+  dts: chosen stdout-path = &lpuart1; pinctrl_uart1
+  summary: UART1_RXD/TXD pin table backs the console LPUART1 pinctrl and stdout-path.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - UART1_RXD
+- id: E06
+  pdf: FRDM
+  page: 23
+  term: ENET1_MDC
+  kind: pinmux
+  dts: '&eqos pinctrl_eqos'
+  summary: ENET1 RGMII/QoS pins back EQOS ethernet0 pinctrl and phy-mode = rgmii-id.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - ENET1_MDC
+- id: E07
+  pdf: FRDM
+  page: 23
+  term: SD2_CD_B
+  kind: pinmux
+  dts: '&usdhc2 cd-gpios and pinctrl_usdhc2_gpio'
+  summary: SD2 card-detect pin backs USDHC2 removable SD card detect GPIO.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - SD2_CD_B
+- id: E08
+  pdf: FRDM
+  page: 23
+  term: SD3_DATA0
+  kind: pinmux
+  dts: '&usdhc3 Wi-Fi SDIO pinctrl'
+  summary: SD3 data pins back USDHC3 non-removable Wi-Fi SDIO wiring.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - SD3_DATA0
+- id: E12
+  pdf: FRDM
+  page: 21
+  term: CAN_STBY
+  kind: pinmux
+  dts: '&flexcan2 and reg_can2_stby'
+  summary: CAN transceiver standby net CAN_STBY backs reg_can2_stby and the FlexCAN2
+    xceiver-supply.
+  verification:
+  - pdf: FRDM
+    page: 21
+    required_terms:
+    - CAN_STBY
+- id: E52
+  pdf: FRDM
+  page: 17
+  term: CAN_STBY
+  kind: peripheral
+  dts: gpio = <&pcal6524 23 GPIO_ACTIVE_LOW>
+  summary: PCAL6524 GPIO offset 23 is port P2_7 in the expander table, which is wired
+    to CAN_STBY on the board.
+  verification:
+  - pdf: FRDM
+    page: 17
+    required_terms:
+    - P2_7
+    - CAN_STBY
+- id: E53
+  pdf: FRDM
+  page: 23
+  term: can2.TX
+  kind: pinmux
+  dts: pinctrl_flexcan2
+  summary: GPIO_IO25/GPIO_IO27 mux to CAN2_TX/CAN2_RX for the FlexCAN2 pinctrl group.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - can2.TX
+- id: E13
+  pdf: FRDM
+  page: 3
+  term: PCA9451A
+  kind: power
+  dts: PMIC BUCK/LDO regulator rails
+  summary: Power tree identifies the PCA9451A regulator topology and rails used by
+    BUCK1/2/4/5/6 and LDO1/4/5.
+  verification:
+  - pdf: FRDM
+    page: 3
+    required_terms:
+    - PCA9451A
+- id: E41
+  pdf: FRDM
+  page: 3
+  term: BUCK1/3
+  kind: power
+  dts: pmic@25/BUCK1
+  summary: PDF power tree shows BUCK1/3 dual-phase at 0.85 V for VDD_SOC; DTS models
+    this rail as BUCK1 with 610000-950000 uV.
+  verification:
+  - pdf: FRDM
+    page: 3
+    required_terms:
+    - BUCK1/3
+- id: E42
+  pdf: FRDM
+  page: 3
+  term: BUCK2
+  kind: power
+  dts: pmic@25/BUCK2
+  summary: PDF power tree shows BUCK2 at 0.6 V for VDDQ_DDR; DTS constrains BUCK2
+    to 600000-670000 uV.
+  verification:
+  - pdf: FRDM
+    page: 3
+    required_terms:
+    - BUCK2
+- id: E43
+  pdf: FRDM
+  page: 3
+  term: BUCK4
+  kind: power
+  dts: pmic@25/BUCK4
+  summary: PDF power tree shows BUCK4 at 3.3 V for NVCC_GPIO/VDD_USB_3P3; DTS allows
+    1620000-3400000 uV.
+  verification:
+  - pdf: FRDM
+    page: 3
+    required_terms:
+    - BUCK4
+- id: E44
+  pdf: FRDM
+  page: 3
+  term: BUCK5
+  kind: power
+  dts: pmic@25/BUCK5
+  summary: PDF power tree shows BUCK5 at 1.8 V for VDD_ANA_1P8/NVCC_WAKEUP; DTS allows
+    1620000-3400000 uV.
+  verification:
+  - pdf: FRDM
+    page: 3
+    required_terms:
+    - BUCK5
+- id: E45
+  pdf: FRDM
+  page: 3
+  term: BUCK6
+  kind: power
+  dts: pmic@25/BUCK6
+  summary: PDF power tree shows BUCK6 at 1.1 V for VDD2_DDR/LPD4 VDDQ; DTS constrains
+    BUCK6 to 1060000-1140000 uV.
+  verification:
+  - pdf: FRDM
+    page: 3
+    required_terms:
+    - BUCK6
+- id: E46
+  pdf: FRDM
+  page: 3
+  term: LDO1
+  kind: power
+  dts: pmic@25/LDO1
+  summary: PDF power tree shows LDO1 at 1.8 V for NVCC_BBSM_1V8; DTS constrains LDO1
+    to 1620000-1980000 uV.
+  verification:
+  - pdf: FRDM
+    page: 3
+    required_terms:
+    - LDO1
+- id: E47
+  pdf: FRDM
+  page: 3
+  term: LDO4
+  kind: power
+  dts: pmic@25/LDO4
+  summary: PDF power tree shows LDO4 at 0.8 V for VDD_ANA_0P8; DTS constrains LDO4
+    to 800000-840000 uV.
+  verification:
+  - pdf: FRDM
+    page: 3
+    required_terms:
+    - LDO4
+- id: E48
+  pdf: FRDM
+  page: 3
+  term: LDO5
+  kind: power
+  dts: pmic@25/LDO5
+  summary: PDF power tree shows LDO5 as 1.8/3.3 V for NVCC_SD2; DTS allows 1800000-3300000
+    uV.
+  verification:
+  - pdf: FRDM
+    page: 3
+    required_terms:
+    - LDO5
+- id: E49
+  pdf: FRDM
+  page: 10
+  term: BUCK1&3
+  kind: power
+  dts: BUCK3 not listed as independent DTS node
+  summary: PMIC schematic marks BUCK1 and BUCK3 in dual-phase mode for VDD_SOC; DTS
+    does not add a separate BUCK3 node.
+  verification:
+  - pdf: FRDM
+    page: 10
+    required_terms:
+    - BUCK1&3
+- id: E50
+  pdf: FRDM
+  page: 10
+  term: LDO2
+  kind: power
+  dts: LDO2 not listed in this DTS
+  summary: PMIC schematic shows the LDO2 pin, but this board DTS does not instantiate
+    an LDO2 regulator node for PCA9451A.
+  verification:
+  - pdf: FRDM
+    page: 10
+    required_terms:
+    - LDO2
+- id: E51
+  pdf: FRDM
+  page: 10
+  term: LDO3
+  kind: power
+  dts: LDO3 not listed in this DTS
+  summary: PMIC schematic shows LDO3/VLDO3_1V8, but this board DTS does not instantiate
+    an LDO3 regulator node.
+  verification:
+  - pdf: FRDM
+    page: 10
+    required_terms:
+    - LDO3
+- id: E14
+  pdf: FRDM
+  page: 20
+  term: VEXP_3V3
+  kind: power
+  dts: reg_vexp_3v3
+  summary: Expansion 3.3 V rail backs the fixed VEXP_3V3 regulator node.
+  verification:
+  - pdf: FRDM
+    page: 20
+    required_terms:
+    - VEXP_3V3
+- id: E15
+  pdf: FRDM
+  page: 20
+  term: VEXP_5V
+  kind: power
+  dts: reg_vexp_5v
+  summary: Expansion 5 V rail backs the fixed VEXP_5V regulator node.
+  verification:
+  - pdf: FRDM
+    page: 20
+    required_terms:
+    - VEXP_5V
+- id: E16
+  pdf: FRDM
+  page: 20
+  term: VSD_3V3
+  kind: power
+  dts: reg_usdhc2_vmmc
+  summary: VSD_3V3 rail backs the USDHC2 VMMC fixed regulator.
+  verification:
+  - pdf: FRDM
+    page: 20
+    required_terms:
+    - VSD_3V3
+- id: E19
+  pdf: FRDM
+  page: 23
+  term: DAP_TDO_TRACESWO
+  kind: pinmux
+  dts: pinctrl_uart5
+  summary: DAP pins muxed to LPUART5 back the Bluetooth UART pinctrl.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - DAP_TDO_TRACESWO
+- id: E20
+  pdf: FRDM
+  page: 23
+  term: I2C1_SCL
+  kind: pinmux
+  dts: pinctrl_lpi2c1 and &lpi2c1
+  summary: I2C1 pins back the lpi2c1 bus hosting audio, IMU, and optional display
+    bridge devices.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - I2C1_SCL
+- id: E21
+  pdf: FRDM
+  page: 23
+  term: I2C2_SCL
+  kind: pinmux
+  dts: pinctrl_lpi2c2 and &lpi2c2
+  summary: I2C2 pins back the lpi2c2 bus hosting PCAL6524, PCA9451A, and ADP5585.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - I2C2_SCL
+- id: E22
+  pdf: FRDM
+  page: 23
+  term: GPIO_IO28
+  kind: pinmux
+  dts: pinctrl_lpi2c3 and &lpi2c3
+  summary: GPIO_IO28/29 muxed to LPI2C3 back USB-C, RTC, and camera/ISP I2C devices.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - GPIO_IO28
+- id: E58
+  pdf: FRDM
+  page: 17
+  term: PCIE_nWAKE
+  kind: peripheral
+  dts: gpio = <&pcal6524 2 GPIO_ACTIVE_HIGH>
+  summary: PCAL6524 GPIO offset 2 is port P0_2. The FRDM schematic maps P0_2 to the
+    PCIE_nWAKE net, not directly to a VEXP enable net.
+  verification:
+  - pdf: FRDM
+    page: 17
+    required_terms:
+    - P0_2
+    - PCIE_nWAKE
+- id: E59
+  pdf: FRDM
+  page: 17
+  term: EXP_PWREN
+  kind: peripheral
+  dts: gpio = <&pcal6524 8 GPIO_ACTIVE_HIGH>
+  summary: PCAL6524 GPIO offset 8 is port P1_0. The FRDM schematic maps P1_0 to EXP_PWREN,
+    which is used by expansion power switching.
+  verification:
+  - pdf: FRDM
+    page: 17
+    required_terms:
+    - P1_0
+    - EXP_PWREN
+- id: E60
+  pdf: FRDM
+  page: 17
+  term: EXT1_PWREN
+  kind: peripheral
+  dts: gpio = <&pcal6524 13 GPIO_ACTIVE_HIGH>
+  summary: PCAL6524 GPIO offset 13 is port P1_5. The FRDM schematic maps P1_5 to EXT1_PWREN.
+  verification:
+  - pdf: FRDM
+    page: 17
+    required_terms:
+    - P1_5
+    - EXT1_PWREN
+- id: E61
+  pdf: FRDM
+  page: 17
+  term: SD3_nRST
+  kind: peripheral
+  dts: reset-gpios = <&pcal6524 18 GPIO_ACTIVE_LOW>
+  summary: PCAL6524 GPIO offset 18 is port P2_2. The FRDM schematic maps P2_2 to SD3_nRST
+    for the Wi-Fi SDIO reset path.
+  verification:
+  - pdf: FRDM
+    page: 17
+    required_terms:
+    - P2_2
+    - SD3_nRST
+- id: E62
+  pdf: FRDM
+  page: 17
+  term: M2_nDIS1
+  kind: peripheral
+  dts: gpio = <&pcal6524 20 GPIO_ACTIVE_HIGH>
+  summary: PCAL6524 GPIO offset 20 is port P2_4. The schematic area places P2_4 in
+    the M.2 disable/reset group, with M2_nDIS1 adjacent in the same net group; this
+    should be reviewed against the original PDF before treating the DTS line as fully
+    proven.
+  verification:
+  - pdf: FRDM
+    page: 17
+    required_terms:
+    - P2_4
+    - M2_nDIS1
+- id: E24
+  pdf: FRDM
+  page: 22
+  term: IT6263
+  kind: i2c
+  dts: lvds-to-hdmi-bridge@4c
+  summary: IT6263/4c table entry backs the disabled LVDS bridge node.
+  verification:
+  - pdf: FRDM
+    page: 22
+    required_terms:
+    - IT6263
+- id: E27
+  pdf: FRDM
+  page: 23
+  term: PDM_CLK
+  kind: pinmux
+  dts: dmic, sound-micfil, &micfil, pinctrl_pdm
+  summary: PDM clock/bitstream pins back the digital microphone codec and MICFIL audio
+    card.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - PDM_CLK
+- id: E28
+  pdf: FRDM
+  page: 23
+  term: SAI1_TXC
+  kind: pinmux
+  dts: sound-bt-sco and &sai1
+  summary: SAI1 pins back the Bluetooth SCO simple-audio-card.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - SAI1_TXC
+- id: E29
+  pdf: FRDM
+  page: 23
+  term: GPIO_IO26
+  kind: pinmux
+  dts: sound-wm8962 and &sai3
+  summary: GPIO_IO16/17/19/20/26 muxed to SAI3 back the WM8962 audio card.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - GPIO_IO26
+- id: E30
+  pdf: FRDM
+  page: 23
+  term: SD1_CLK
+  kind: pinmux
+  dts: '&usdhc1 and pinctrl_usdhc1'
+  summary: SD1 8-bit pins back the non-removable eMMC/USDHC1 node.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - SD1_CLK
+- id: E31
+  pdf: FRDM
+  page: 23
+  term: SD2_CLK
+  kind: pinmux
+  dts: '&usdhc2 and pinctrl_usdhc2'
+  summary: SD2 pins back the removable SD card/USDHC2 node.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - SD2_CLK
+- id: E32
+  pdf: FRDM
+  page: 23
+  term: SD3_CLK
+  kind: pinmux
+  dts: '&usdhc3 and pinctrl_usdhc3'
+  summary: SD3 pins back the non-removable Wi-Fi SDIO/USDHC3 node.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - SD3_CLK
+- id: E33
+  pdf: FRDM
+  page: 23
+  term: ENET2_MDC
+  kind: pinmux
+  dts: '&fec pinctrl_fec'
+  summary: ENET2 RGMII pins back FEC ethernet1 pinctrl and phy-mode = rgmii-id.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - ENET2_MDC
+- id: E34
+  pdf: FRDM
+  page: 14
+  term: ENET1_MDC
+  kind: peripheral
+  dts: eqos ethernet-phy@1 reg=<1>
+  summary: ENET1 PHY schematic backs EQOS MDIO/RGMII wiring and PHY address 1.
+  verification:
+  - pdf: FRDM
+    page: 14
+    required_terms:
+    - ENET1_MDC
+- id: E36
+  pdf: FRDM
+  page: 13
+  term: USB1_DP
+  kind: pinmux
+  dts: '&usbotg1 and ptn5110 connector'
+  summary: USB1 DP/DM wiring backs USB OTG1 dual-role Type-C operation.
+  verification:
+  - pdf: FRDM
+    page: 13
+    required_terms:
+    - USB1_DP
+- id: E38
+  pdf: FRDM
+  page: 23
+  term: ADC_IN0
+  kind: pinmux
+  dts: '&adc1 and reg_vref_1v8'
+  summary: ADC input pin table backs ADC enablement and the ADC reference regulator.
+  verification:
+  - pdf: FRDM
+    page: 23
+    required_terms:
+    - ADC_IN0
+- id: E40
+  pdf: FRDM
+  page: 22
+  term: CTP/LCD
+  kind: peripheral
+  dts: '&dsi, &dphy, &lcdif, adv7535/lvds_bridge endpoints'
+  summary: Display bridge entries and MIPI DSI display path back the display graph
+    nodes.
+  verification:
+  - pdf: FRDM
+    page: 22
+    required_terms:
+    - CTP/LCD
